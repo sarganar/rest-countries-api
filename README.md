@@ -4,7 +4,7 @@
 
 ## Welcome! 👋
 
-Challenge site: 
+Challenge finished site: 
 
 ## The challenge
 
