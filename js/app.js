@@ -51,11 +51,4 @@ export function prepareForPrintDetails(id) {
     printCountryDetails(selectedCountry);
 }
 
-const removeParenthesisParts = text => {
-    const [name, ...rest] = text.split("(");
-    if (name) {
-        return name.trim();
-    } else {
-        return text;
-    }
-}
+const removeParenthesisParts = text => text.split("(")[0].trim();
