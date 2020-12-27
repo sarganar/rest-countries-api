@@ -1,14 +1,10 @@
-# Frontend Mentor - REST Countries API with color theme switcher
+# FEC CHALLENGE - REST Countries API with color theme switcher
 
 ![Design preview for the REST Countries API with color theme switcher coding challenge](./design/desktop-preview.jpg)
 
 ## Welcome! 👋
 
-Thanks for checking out this front-end coding challenge.
-
-[Frontend Mentor](https://www.frontendmentor.io) challenges allow you to improve your skills in a real-life workflow.
-
-**To do this challenge, you need a good understanding of JavaScript.**
+Challenge site: 
 
 ## The challenge
 
@@ -27,5 +23,13 @@ Your users should be able to:
 
 Want some support on the challenge? [Join our Slack community](https://www.frontendmentor.io/slack) and ask questions in the **#help** channel.
 
-## Where to find everything
+## Technologies used
+
+* HTML
+* CSS
+* Vanilla Javascript
+
+* API: [REST Countries API](https://restcountries.eu)
+
+
 
