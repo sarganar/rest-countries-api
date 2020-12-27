@@ -149,6 +149,7 @@ header {
 }
 .dark-mode {
   cursor: pointer;
+  color: #e0dada;
 }
 .dark-mode span {
   margin-left: 5px;
