@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COUNTRIES INFO</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+
+<body>
+    <header class="border-shadow">
+        <div class="container header-elements">
+            <h2>Where in the world?</h2>
+            <div class="dark-mode">
+                <p><i class="far fa-moon"></i><span>Dark Mode</span></p>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <section class="searching-and-filtering container">
+            <div class="search-box border-shadow">
+                <i class="fas fa-search"></i>
+                <input type="text" id="byName" placeholder="Search for a country...">
+            </div>
+            <select class="filter border-shadow" name="filter-by-region" id="byRegion">
+                <option value="ALL" selected>Filter by Region</option>
+                <option value="AF">Africa</option>
+                <option value="AM">America</option>
+                <option value="AS">Asia</option>
+                <option value="EU">Europe</option>
+                <option value="OC">Oceania</option>
+            </select>
+        </section>
+
+        <section class="messages container">
+            <div class="messages-box" hidden>
+                <p>No results, please try other criteria</p>
+            </div>
+        </section>
+
+        <section class="countries-brief-info container">
+        </section>
+
+        <section class="country-details container" hidden>
+            <nav class="back">
+                <button name="back" class="border-shadow" id="back"><i class="fas fa-arrow-left"></i> <span>Back</span></button>
+            </nav>
+
+            <div class="panel">
+                <div class="flag-detail">
+                </div>
+
+                <div class="info-detail">
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <script src="https://kit.fontawesome.com/17bbf751cc.js" crossorigin="anonymous"></script>
+    <script src="./js/app.js" type="module"></script>
+</body>
+
+</html>
