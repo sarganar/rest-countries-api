@@ -20,7 +20,7 @@ async function startApp() {
 
     countryCodes = fullCountries.map(country => country.alpha3Code);
 
-    console.log(fullCountries[0]);
+    //console.log(fullCountries[0]);
     printCountriesCard(fullCountries);
 
 }
@@ -39,7 +39,7 @@ export function prepareForPrintDetails(id) {
                 name: ''
             };
             dataBorder.id = idFound;
-            dataBorder.name = removeParenthesisParts(fullCountries[idFound].name);
+            dataBorder.name = removeParenthesisPart(fullCountries[idFound].name);
             return dataBorder;
         } else {
             console.error('No se encontraron datos del pais id:', id);
@@ -51,4 +51,4 @@ export function prepareForPrintDetails(id) {
     printCountryDetails(selectedCountry);
 }
 
-const removeParenthesisParts = text => text.split("(")[0].trim();
+const removeParenthesisPart = text => text.split("(")[0].trim();

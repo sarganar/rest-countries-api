@@ -62,8 +62,6 @@ export function printCountriesCard(fullCountries) {
 
         divFather.appendChild(divCard);
     });
-//    <img src="${flag}" alt="flag of ${name}">
-{/* <div class="flag" style="background-image:url('${encodeURIComponent(flag)}');"> */}
 
     divsAllCards = document.querySelectorAll('.country-card');
     //const final = performance.now();
@@ -125,12 +123,11 @@ export function printCountryDetails(country) {
     divFilters.hidden = true;
     divCountriesBrief.hidden = true;
     window.scrollTo({
-        top:0,
+        top: 0,
         behavior: 'auto'
     });
 }
 
-//todo: informar si no hay paises limitrofes. ej Barbados
 function renderBorders(borders) {
     let buttonsHTML = '';
     borders.forEach(({
@@ -153,33 +150,32 @@ function renderBorders(borders) {
     `;
 }
 
-function getNames(data) {
-    return data.map(item => item.name).join(', ');
-}
+const getNames = data => data.map(item => item.name).join(', ');
+
 
 function filterCards() {
     let areAllHidden = true;
 
     divsAllCards.forEach(element => {
-        let hiddenByName, hiddenByRegion;
+        let isHiddenByName, isHiddenByRegion;
 
         if (filterCriteria.byRegion === 'ALL') {
-            hiddenByRegion = false;
+            isHiddenByRegion = false;
         } else if (element.dataset.region === filterCriteria.byRegion) {
-            hiddenByRegion = false;
+            isHiddenByRegion = false;
         } else {
-            hiddenByRegion = true;
+            isHiddenByRegion = true;
         }
 
         if (filterCriteria.byName === '') {
-            hiddenByName = false;
+            isHiddenByName = false;
         } else if (element.dataset.name.includes(filterCriteria.byName)) {
-            hiddenByName = false;
+            isHiddenByName = false;
         } else {
-            hiddenByName = true;
+            isHiddenByName = true;
         }
 
-        element.hidden = hiddenByRegion || hiddenByName;
+        element.hidden = isHiddenByRegion || isHiddenByName;
         areAllHidden = areAllHidden && element.hidden; // si areAllHidden es false luego del forEach, al menos una card se mostró
 
     });
