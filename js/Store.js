@@ -1,3 +1,5 @@
+'use strict';
+
 export function getValueFromStore(nameValue) {
     return JSON.parse(localStorage.getItem(nameValue));
 }

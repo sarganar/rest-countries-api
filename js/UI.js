@@ -31,7 +31,7 @@ export function initUI() {
 }
 
 export function printCountriesCard(fullCountries) {
-    const inicio = performance.now();
+    // const inicio = performance.now();
     const regions = {
         'Africa': 'AF',
         'Americas': 'AM',
@@ -78,8 +78,9 @@ export function printCountriesCard(fullCountries) {
     });
 
     divsAllCards = document.querySelectorAll('.country-card');
-    const final = performance.now();
-    console.log('performance', final - inicio);
+
+    // const final = performance.now();
+    // console.log('performance', final - inicio);
 }
 
 

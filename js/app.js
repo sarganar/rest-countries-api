@@ -1,6 +1,6 @@
 'use strict';
 import {
-    requestAPI
+    getAllCountries 
 } from './API.js';
 import {
     printCountriesCard,
@@ -17,10 +17,10 @@ document.addEventListener('DOMContentLoaded', startApp);
 async function startApp() {
     initUI();
 
-    fullCountries = await requestAPI();
+    fullCountries = await getAllCountries();
 
     countryCodes = fullCountries.map(country => country.alpha3Code);
-
+    // console.log(fullCountries);
     printCountriesCard(fullCountries);
 }
 
@@ -30,8 +30,10 @@ export function prepareForPrintDetails(id) {
         ...fullCountries[id]
     };
 
-    const bordersExpandedNames = selectedCountry.borders.map(border => {
-        const idFound = countryCodes.indexOf(border);
+    const bordersExpandedNames = selectedCountry.borders.map(borderCountry => {
+        
+        
+        const idFound = countryCodes.indexOf(borderCountry);
         if (idFound > -1) {
             let dataBorder = {
                 id: 0,
