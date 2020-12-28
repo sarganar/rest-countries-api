@@ -1,6 +1,6 @@
 'use strict';
 import {
-    getAllCountries 
+    getAllCountries
 } from './API.js';
 import {
     printCountriesCard,
@@ -9,7 +9,6 @@ import {
 } from './UI.js';
 
 let fullCountries = [];
-let countryCodes = [];
 
 document.addEventListener('DOMContentLoaded', startApp);
 
@@ -19,8 +18,9 @@ async function startApp() {
 
     fullCountries = await getAllCountries();
 
-    countryCodes = fullCountries.map(country => country.alpha3Code);
-    // console.log(fullCountries);
+    fullCountries.forEach((element, index) => element.id = index);
+
+    //console.log(fullCountries);
     printCountriesCard(fullCountries);
 }
 
@@ -30,20 +30,22 @@ export function prepareForPrintDetails(id) {
         ...fullCountries[id]
     };
 
-    const bordersExpandedNames = selectedCountry.borders.map(borderCountry => {
-        
-        
-        const idFound = countryCodes.indexOf(borderCountry);
-        if (idFound > -1) {
+    const bordersExpandedNames = selectedCountry.borders.map(countryAlpha3Code => {
+
+        const countryFound = fullCountries.find(element => element.alpha3Code === countryAlpha3Code);
+
+        if (countryFound.name) {
             let dataBorder = {
                 id: 0,
                 name: ''
             };
-            dataBorder.id = idFound;
-            dataBorder.name = removeParenthesisPart(fullCountries[idFound].name);
+            dataBorder.id = countryFound.id;
+            dataBorder.name = removeParenthesisPart(countryFound.name);
+
             return dataBorder;
+
         } else {
-            console.error('No se encontraron datos del pais id:', id);
+            console.error('No se encontraron datos del pais limitrofe: ', countryAlpha3Code);
         }
     });
 
