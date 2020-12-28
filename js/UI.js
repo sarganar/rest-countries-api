@@ -15,10 +15,12 @@ export function initUI() {
     const filterByRegion = document.querySelector('#byRegion');
     const searchInput = document.querySelector('#byName');
     const buttonBack = document.querySelector('#back');
+    const darkModeSwitch=document.querySelector('.dark-mode-switch');
 
     filterByRegion.addEventListener('change', changeFilterByRegion);
     searchInput.addEventListener('input', changeFilterByName);
     buttonBack.addEventListener('click', returnToCountriesBrief);
+    darkModeSwitch.addEventListener('click',switchColorTheme);
 }
 
 export function printCountriesCard(fullCountries) {
@@ -220,5 +222,11 @@ function clickPanel(event) {
     if (event.target.classList.contains('border-button')) {
         prepareForPrintDetails(event.target.dataset.id);
     }
+
+}
+
+function switchColorTheme(){
+
+    document.body.classList.toggle('dark-mode');
 
 }

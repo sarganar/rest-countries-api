@@ -26,7 +26,7 @@ Want some support on the challenge? [Join our Slack community](https://www.front
 ## Technologies used
 
 * HTML
-* CSS
+* CSS ([normalize.css](https://necolas.github.io/normalize.css/) and [html5 boilerplate css stuff](https://html5boilerplate.com/))
 * Vanilla Javascript
 
 * API: [REST Countries API](https://restcountries.eu)

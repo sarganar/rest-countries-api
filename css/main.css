@@ -86,10 +86,25 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+body {
+  --text-color: hsl(200, 15%, 8%);
+  --background:hsl(0, 0%, 98%);
+  --element-background:hsl(0, 0%, 100%);
+  --input-color:hsl(0, 0%, 52%);
+  --message-color:gray;
+}
+body.dark-mode{
+  --text-color: hsl(0, 0%, 100%);
+  --background:hsl(207, 26%, 17%);
+  --element-background:hsl(209, 23%, 22%);
+  --input-color:hsl(0, 9%, 80%);
+  --message-color:rgb(150, 147, 147);
+}
 
 body {
   font-family: "Nunito Sans", sans-serif;
-  background-color: #fafafa;
+  background-color: var(--background);
+  color: var(--text-color);
   font-size: 1.5rem;
 }
 
@@ -132,7 +147,7 @@ h4 {
   font-weight: bold;
 }
 header {
-  background-color: white;
+  background-color: var(--element-background);
   padding: 2rem 0;
 }
 
@@ -147,11 +162,11 @@ header {
   justify-content: space-between;
   align-items: baseline;
 }
-.dark-mode {
+.dark-mode-switch {
   cursor: pointer;
-  color: #e0dada;
+  color:var(--text-color);
 }
-.dark-mode span {
+.dark-mode-switch  span {
   margin-left: 5px;
   cursor: pointer;
 }
@@ -171,15 +186,15 @@ section.searching-and-filtering {
 .search-box {
   padding: 1.5rem;
 
-  background-color: white;
-  border: 1px solid white;
+  background-color: var(--element-background);
+  border: 1px solid transparent;
   border-radius: 4px;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  color: #b2b2b2d2;
+  color:var(--input-color);
   text-align: center;
 }
 
@@ -196,21 +211,24 @@ section.searching-and-filtering {
   flex-basis: calc(80% - 1rem);
   border: none;
   outline-color: #b2b2b2d2;
+  background-color: var(--element-background);
+  color: var(--input-color);
 }
 .search-box input::placeholder {
-  color: #b2b2b2d2;
+  color: var(--input-color);
 }
 .search-box input:focus {
-  border: 1px solid #b2b2b2d2;
+  border: 1px solid transparent;
 }
 
 select.filter {
   margin-top: 4rem;
   padding: 1.5rem 1rem;
 
-  background-color: white;
-  border: 1px solid white;
+  background-color: var(--element-background);
+  border: 1px solid transparent;
   border-radius: 4px;
+  color: var(--input-color);
 }
 @media (min-width: 768px) {
   select.filter {
@@ -229,14 +247,13 @@ section.countries-brief-info {
   margin-top: 3rem;
   /* content-visibility:auto; */
 }
-@media(min-width:480px){
+@media (min-width: 480px) {
   section.countries-brief-info {
     justify-content: space-between;
-  }  
+  }
 }
 .country-card {
-  background-color: white;
-  /* margin: 0 auto 4rem auto; */
+  background-color: var(--element-background);
   margin: 0 0 4rem 0;
   border-radius: 10px;
   cursor: pointer;
@@ -262,7 +279,7 @@ section.countries-brief-info {
 .messages-box {
   margin: 10rem auto 0 auto;
   text-align: center;
-  color: gray;
+  color: var(--message-color);
 }
 .info-detail .messages-box {
   margin: 0 auto;
@@ -270,7 +287,8 @@ section.countries-brief-info {
 
 /* SECCION INFO DETALLADA */
 nav.back button {
-  background-color: white;
+  background-color: var(--element-background);
+  color: var(--text-color);
   border: none;
   margin-top: 3rem;
   padding: 1rem 3rem;
@@ -349,7 +367,8 @@ nav.back button span {
 }
 
 .info-detail nav button {
-  background-color: white;
+  background-color: var(--element-background);
+  color: var(--text-color);
   border: none;
   padding: 1rem 0;
   margin-top: 2rem;
