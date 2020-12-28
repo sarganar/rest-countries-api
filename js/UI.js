@@ -22,7 +22,7 @@ export function initUI() {
 }
 
 export function printCountriesCard(fullCountries) {
-    //const inicio = performance.now();
+    const inicio = performance.now();
     const regions = {
         'Africa': 'AF',
         'Americas': 'AM',
@@ -44,17 +44,22 @@ export function printCountriesCard(fullCountries) {
 
         const divCard = document.createElement('div');
         divCard.className = 'country-card border-shadow';
-        divCard.innerHTML = `
-        <div class="flag">
-            <img src="${flag}" alt="flag of ${name}">
-        </div>
-        <div class="info">
+
+        const divFlag = document.createElement('div');
+        divFlag.classList.add('flag');
+        divFlag.style.backgroundImage = `url(${flag})`;
+        divCard.appendChild(divFlag);
+
+        const divInfo = document.createElement('div');
+        divInfo.classList.add('info');
+        divInfo.innerHTML = `
             <h3>${name}</h3>
             <p><span>Population:</span> ${population}</p>
             <p><span>Region:</span> ${region}</p>
             <p><span>Capital:</span> ${capital}</p>
-        </div>        
         `;
+        divCard.appendChild(divInfo);
+
         divCard.dataset.name = name.toLowerCase().trim();
         divCard.dataset.region = regions[region];
         divCard.dataset.id = index;
@@ -64,8 +69,8 @@ export function printCountriesCard(fullCountries) {
     });
 
     divsAllCards = document.querySelectorAll('.country-card');
-    //const final = performance.now();
-    //console.log('performance', final - inicio);
+    const final = performance.now();
+    console.log('performance', final - inicio);
 }
 
 
