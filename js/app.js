@@ -13,6 +13,7 @@ let countryCodes = [];
 
 document.addEventListener('DOMContentLoaded', startApp);
 
+
 async function startApp() {
     initUI();
 
@@ -20,9 +21,7 @@ async function startApp() {
 
     countryCodes = fullCountries.map(country => country.alpha3Code);
 
-    //console.log(fullCountries[0]);
     printCountriesCard(fullCountries);
-
 }
 
 export function prepareForPrintDetails(id) {
@@ -31,7 +30,7 @@ export function prepareForPrintDetails(id) {
         ...fullCountries[id]
     };
 
-    const bordersCompleteNames = fullCountries[id].borders.map(border => {
+    const bordersExpandedNames = selectedCountry.borders.map(border => {
         const idFound = countryCodes.indexOf(border);
         if (idFound > -1) {
             let dataBorder = {
@@ -46,8 +45,8 @@ export function prepareForPrintDetails(id) {
         }
     });
 
-    selectedCountry.borders = bordersCompleteNames;
-    //console.log(selectedCountry);
+    selectedCountry.borders = bordersExpandedNames;
+    // console.log(selectedCountry);
     printCountryDetails(selectedCountry);
 }
 

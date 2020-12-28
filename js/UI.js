@@ -9,18 +9,23 @@ const filterCriteria = {
     byName: '',
     byRegion: 'ALL'
 };
-
+let isSetDarkMode;
 
 export function initUI() {
     const filterByRegion = document.querySelector('#byRegion');
     const searchInput = document.querySelector('#byName');
     const buttonBack = document.querySelector('#back');
-    const darkModeSwitch=document.querySelector('.dark-mode-switch');
+    const darkModeSwitch = document.querySelector('.dark-mode-switch');
 
     filterByRegion.addEventListener('change', changeFilterByRegion);
     searchInput.addEventListener('input', changeFilterByName);
     buttonBack.addEventListener('click', returnToCountriesBrief);
-    darkModeSwitch.addEventListener('click',switchColorTheme);
+    darkModeSwitch.addEventListener('click', switchColorTheme);
+
+    isSetDarkMode = getValueStored('isSetDarkMode') || false;
+    if (isSetDarkMode) {
+        switchColorTheme()
+    }
 }
 
 export function printCountriesCard(fullCountries) {
@@ -225,8 +230,18 @@ function clickPanel(event) {
 
 }
 
-function switchColorTheme(){
+function switchColorTheme() {
 
     document.body.classList.toggle('dark-mode');
+    isSetDarkMode = document.body.classList.contains('dark-mode');
+    setValueInStore('isSetDarkMode', isSetDarkMode);
 
+}
+
+function getValueStored(nameValue) {
+    return JSON.parse(localStorage.getItem(nameValue));
+}
+
+function setValueInStore(nameValue, value) {
+    localStorage.setItem(nameValue, JSON.stringify(value));
 }
