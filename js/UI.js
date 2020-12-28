@@ -4,6 +4,8 @@ import {
     prepareForPrintDetails
 } from "./app.js";
 
+import { getValueFromStore,setValueInStore } from "./Store.js";
+
 let divsAllCards = [];
 const filterCriteria = {
     byName: '',
@@ -22,7 +24,7 @@ export function initUI() {
     buttonBack.addEventListener('click', returnToCountriesBrief);
     darkModeSwitch.addEventListener('click', switchColorTheme);
 
-    isSetDarkMode = getValueStored('isSetDarkMode') || false;
+    isSetDarkMode = getValueFromStore('isSetDarkMode') || false;
     if (isSetDarkMode) {
         switchColorTheme()
     }
@@ -227,21 +229,11 @@ function clickPanel(event) {
     if (event.target.classList.contains('border-button')) {
         prepareForPrintDetails(event.target.dataset.id);
     }
-
 }
 
 function switchColorTheme() {
-
     document.body.classList.toggle('dark-mode');
     isSetDarkMode = document.body.classList.contains('dark-mode');
     setValueInStore('isSetDarkMode', isSetDarkMode);
-
 }
 
-function getValueStored(nameValue) {
-    return JSON.parse(localStorage.getItem(nameValue));
-}
-
-function setValueInStore(nameValue, value) {
-    localStorage.setItem(nameValue, JSON.stringify(value));
-}
