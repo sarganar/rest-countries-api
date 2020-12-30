@@ -376,6 +376,19 @@ nav.back button span {
   border-radius: 8px;
 }
 
+/* FOOTER */
+
+footer p{
+  text-align: center;
+  color: var(--message-color);
+}
+
+footer a{
+  text-decoration: none;
+  color: var(--message-color);
+}
+
+
 /* ==========================================================================
    Helper classes
    ========================================================================== */
