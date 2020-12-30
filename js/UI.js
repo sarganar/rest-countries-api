@@ -1,7 +1,7 @@
 'use strict';
 
 import {
-    prepareForPrintDetails
+    prepareDetails
 } from "./app.js";
 
 import { getValueFromStore,setValueInStore } from "./Store.js";
@@ -48,7 +48,8 @@ export function printCountriesCard(fullCountries) {
             population,
             region,
             capital,
-            flag
+            flag,
+            alpha3Code
         } = element;
 
         const divCard = document.createElement('div');
@@ -71,7 +72,7 @@ export function printCountriesCard(fullCountries) {
 
         divCard.dataset.name = name.toLowerCase().trim();
         divCard.dataset.region = regions[region];
-        divCard.dataset.id = index;
+        divCard.dataset.id = alpha3Code;
         divCard.addEventListener('click', clickCountry);
 
         divFather.appendChild(divCard);
@@ -96,7 +97,8 @@ export function printCountryDetails(country) {
         topLevelDomain,
         currencies,
         languages,
-        borders
+        borders,
+        borders_expanded
     } = country;
 
     const divFilters = document.querySelector('.searching-and-filtering');
@@ -129,7 +131,7 @@ export function printCountryDetails(country) {
         </div>
         <div class="border-countries">
             <h4>Border Countries:</h4>        
-            ${renderBorders(borders)}
+            ${renderBorders(borders_expanded)}
         </div>    
     </div>    
     `;
@@ -148,7 +150,7 @@ function renderBorders(borders) {
     borders.forEach(({
         id,
         name
-    }) => buttonsHTML += `   <button name="${name}" id="${name}" data-id="${id}"class="border-shadow border-button">${name}</button>
+    }) => buttonsHTML += `   <button name="${name}" id="${name}" data-id="${id}" class="border-shadow border-button">${name}</button>
     `);
 
     if (buttonsHTML === '') {
@@ -194,7 +196,7 @@ function filterCards() {
         areAllHidden = areAllHidden && element.hidden; // si areAllHidden es false luego del forEach, al menos una card se mostró
 
     });
-
+    
     // decidir si mostrar o no mensaje '0 found', cuando no hay cards para mostrar
     const divMessages = document.querySelector('.messages-box');
     divMessages.hidden = !areAllHidden;
@@ -213,7 +215,7 @@ function changeFilterByName(event) {
 }
 
 function clickCountry(event) {
-    prepareForPrintDetails(event.currentTarget.dataset.id);
+    prepareDetails(event.currentTarget.dataset.id);
 }
 
 function returnToCountriesBrief() {
@@ -228,7 +230,7 @@ function returnToCountriesBrief() {
 
 function clickPanel(event) {
     if (event.target.classList.contains('border-button')) {
-        prepareForPrintDetails(event.target.dataset.id);
+        prepareDetails(event.target.dataset.id);
     }
 }
 

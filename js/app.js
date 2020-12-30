@@ -1,57 +1,53 @@
-'use strict';
-import {
-    getAllCountries
-} from './API.js';
-import {
-    printCountriesCard,
-    initUI,
-    printCountryDetails
-} from './UI.js';
+"use strict";
+import { getAllCountries } from "./API.js";
+import { printCountriesCard, initUI, printCountryDetails } from "./UI.js";
 
 let fullCountries = [];
+let keyedFullCountries = [];
 
-document.addEventListener('DOMContentLoaded', startApp);
-
+document.addEventListener("DOMContentLoaded", startApp);
 
 async function startApp() {
-    initUI();
+  initUI();
 
-    fullCountries = await getAllCountries();
+  fullCountries = await getAllCountries();
 
-    fullCountries.forEach((element, index) => element.id = index);
+  keyedFullCountries = keyBy(fullCountries, "alpha3Code");
 
-    //console.log(fullCountries);
-    printCountriesCard(fullCountries);
+  printCountriesCard(fullCountries);
 }
 
-export function prepareForPrintDetails(id) {
+export function prepareDetails(idAlpha3Code) {
+  const selectedCountry = { ...keyedFullCountries[idAlpha3Code] };
+  const bordersExpanded = expandBordersNames(selectedCountry);
+  selectedCountry.borders_expanded = bordersExpanded;
 
-    const selectedCountry = {
-        ...fullCountries[id]
-    };
-
-    const bordersExpandedNames = selectedCountry.borders.map(countryAlpha3Code => {
-
-        const countryFound = fullCountries.find(element => element.alpha3Code === countryAlpha3Code);
-
-        if (countryFound.name) {
-            let dataBorder = {
-                id: 0,
-                name: ''
-            };
-            dataBorder.id = countryFound.id;
-            dataBorder.name = removeParenthesisPart(countryFound.name);
-
-            return dataBorder;
-
-        } else {
-            console.error('No se encontraron datos del pais limitrofe: ', countryAlpha3Code);
-        }
-    });
-
-    selectedCountry.borders = bordersExpandedNames;
-    // console.log(selectedCountry);
-    printCountryDetails(selectedCountry);
+  printCountryDetails(selectedCountry);
 }
 
-const removeParenthesisPart = text => text.split("(")[0].trim();
+const expandBordersNames = (country) =>
+  country.borders.map((countryAlpha3Code) => {
+    const countryFound = { ...keyedFullCountries[countryAlpha3Code] };
+
+    if (countryFound?.name) {
+      const dataBorder = {
+        id: countryFound.alpha3Code,
+        name: removeParenthesisPart(countryFound.name),
+      };
+
+      return dataBorder;
+    } else {
+      console.error(
+        "No se encontraron datos del pais limitrofe: ",
+        countryAlpha3Code
+      );
+    }
+  });
+
+const removeParenthesisPart = (text) => text.split("(")[0].trim();
+
+const keyBy = (arr, key) =>
+  arr.reduce((acc, el) => {
+    acc[el[key]] = el;
+    return acc;
+  }, {});
